@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Grade Predictor</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding: 20px; }
+        input, select { padding: 8px; margin: 5px; width: 200px; }
+        button { padding: 10px 20px; background-color: #4CAF50; color: white; }
+    </style>
+</head>
+<body>
+    <h2>Student Grade Prediction</h2>
+    <form method="POST" action="/predict">
+        <input type="number" name="reading_score" placeholder="Reading Score" step="0.1" required><br>
+        <input type="number" name="writing_score" placeholder="Writing Score" step="0.1" required><br>
+        <select name="prep_course" required>
+            <option value="">Test Preparation Course</option>
+            <option value="completed">Completed</option>
+            <option value="none">None</option>
+        </select><br>
+        <button type="submit">Predict Grade</button>
+    </form>
+
+    {% if prediction %}
+        <h3>Predicted Math Score: {{ prediction }}</h3>
+        <p><strong>{{ message }}</strong></p>
+    {% endif %}
+
+    {% if error %}
+        <p style="color:red;">Error: {{ error }}</p>
+    {% endif %}
+</body>
+</html>
